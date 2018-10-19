@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "App that allow a Node User interface to interact with a SQL Database",
+  "main": "customer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gjblythe/Bamazon.git"
+  },
+  "author": "Garrett Blythe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gjblythe/Bamazon/issues"
+  },
+  "homepage": "https://github.com/gjblythe/Bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0",
+    "mysql": "^2.16.0"
+  }
+}
