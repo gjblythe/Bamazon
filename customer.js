@@ -68,8 +68,7 @@ function userPurchase() {
                   " $" +
                   response[i].price +
                   " " +
-                  response[i].product_name +
-                  "\n"
+                  response[i].product_name
               );
             }
             return choiceArr;
@@ -100,22 +99,50 @@ function userPurchase() {
         }
       ])
       .then(function(user) {
-        //this will be where the table is Updated
+        //this will be where the table is Updated in the database
 
         //assigning varibles
         var id = user.soldId;
-        var qtyPur = user.qtyPurchased;
+        var qtyPur = response[id].on_hand_qty - user.qtyPurchased;
+        var sqlId = parseFloat(user.soldId) + 1;
 
-        console.log(
-          `You Selected \n${response[id].id} : ${
-            response[id].product_name
-          } \nTotal:  $${qtyPur * response[id].price}`
-        );
-        greeting();
+        //checks to see if quantity to be purchased is available from inventory
+        if (response[id].on_hand_qty >= user.qtyPurchased) {
+          connection.query(
+            "UPDATE products SET ? WHERE ?",
+            [
+              {
+                on_hand_qty: qtyPur
+              },
+              {
+                id: sqlId
+              }
+            ],
+            function(err) {
+              if (err) throw err;
+              console.log(
+                `You Selected \n${response[id].id} : ${
+                  response[id].product_name
+                } \nTotal:  $${user.qtyPurchased * response[id].price}`
+              );
+              return greeting();
+            }
+          );
+        } else {
+          console.log(
+            `Stock Levels on the ${
+              response[id].product_name
+            } are too low. Only ${
+              response[id].on_hand_qty
+            } Available.\n**Make another selection**\n`
+          );
+          return greeting();
+        }
       });
   });
 }
 
+//start of app Asks for a confirmation of either a purchase or inventory view
 function greeting() {
   inquirer
     .prompt([
@@ -140,12 +167,11 @@ function greeting() {
           }
         ])
         .then(function(response) {
-            if (response.shopper === true){
-               return testResponse();
-            };
-            console.log("Then I Cannot Help You. \n**Goodbye**");
-           connection.end();
+          if (response.shopper === true) {
+            return testResponse();
+          }
+          console.log("Then I Cannot Help You. \n**Goodbye**");
+          connection.end();
         });
     });
-
 }
