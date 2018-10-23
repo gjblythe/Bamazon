@@ -111,12 +111,12 @@ function replenish(){
         name: "chosen",
         message: function (){
            var itemArr = [];
-            var id = 1
+           
            console.log("Enter the ID for the Product you would like to Replenish.\n");
           
            for (var i = 0; i < database.length; i++){
-               itemArr.push("\nID " + id + " " + database[i].product_name + " On Hand Quantity: " + database[i].on_hand_qty);
-               id++;
+               itemArr.push("\nID " + database[i].id + " " + database[i].product_name + " On Hand Quantity: " + database[i].on_hand_qty);
+               
            }
            return itemArr;
         },
@@ -147,7 +147,7 @@ function replenish(){
         //use SQL tools to adjust on_hand_qty
         var sqlId = parseFloat(item.chosen) - 1;
         var adj = database[sqlId].on_hand_qty + parseFloat(item.amount);
-
+        
         connection.query("UPDATE products SET ? WHERE ?",
         [
             {
@@ -181,8 +181,7 @@ function deleteItem(){
            console.log("Enter the ID for the Product you would like to Delete.\n");
           
            for (var i = 0; i < database.length; i++){
-               itemArr.push("\nID " + id + " " + database[i].product_name + " On Hand Quantity: " + database[i].on_hand_qty);
-               id++;
+               itemArr.push("\nID " + database[i].id + " " + database[i].product_name + " On Hand Quantity: " + database[i].on_hand_qty);
            }
            return itemArr;
         }
