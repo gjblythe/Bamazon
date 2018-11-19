@@ -3,7 +3,7 @@
 **customer.js
 
 Here is a link showing it in action.
-https://drive.google.com/file/d/1mCRMYHlnDHgeOskeTa8hOcbMq3qR8PUk/view
+![](https://drive.google.com/file/d/1mCRMYHlnDHgeOskeTa8hOcbMq3qR8PUk/view)
 
 This App uses Node and CRUD opperations to interact with a SQL database.
 
