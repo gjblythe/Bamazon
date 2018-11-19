@@ -7,7 +7,7 @@ https://drive.google.com/file/d/1mCRMYHlnDHgeOskeTa8hOcbMq3qR8PUk/view
 
 This App uses Node and CRUD opperations to interact with a SQL database.
 
-![](https://github.com/gjblythe/CrystalCollector/raw/master/bamazonCustomer.gif)
+![](https://github.com/gjblythe/Bamazon/raw/master/bamazonCustomer.gif)
 
 This Aplication will Display choices for the user for "Purchase" and a "Quantity".
 
